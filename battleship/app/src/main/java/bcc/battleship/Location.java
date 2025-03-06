@@ -2,6 +2,7 @@ package bcc.battleship;
 
 public class Location {
     // Instance variables
+    boolean containsShip;
 
     // Constructor. Initializes with no ship and status UNGUESSED.
     public Location() {
