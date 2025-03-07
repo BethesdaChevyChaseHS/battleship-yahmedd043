@@ -21,10 +21,6 @@ public class Player {
      */
     
     public boolean chooseShipLocation(int index, int row, int col, int direction) {
-        if (playerShips[index].isDirectionSet() || playerShips[index].isLocationSet() || myGrid.hasShip(row, col))
-        {
-            return false;
-        }
         playerShips[index].setLocation(row, col);
         playerShips[index].setDirection(direction);
         return myGrid.addShip(playerShips[index]);
@@ -45,7 +41,6 @@ public class Player {
         myGrid.markMiss(row, col);
         return false;
     }
-    
     
     public Grid getMyGrid() {
         return myGrid;

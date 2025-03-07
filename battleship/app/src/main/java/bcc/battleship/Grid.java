@@ -72,7 +72,7 @@ public class Grid {
 
     //maybe convert to boolean?
     public boolean addShip(Ship s) {
-        if (s.getDirection() == Constants.HORIZONTAL && s.getCol() + s.getLength() < grid[0].length)
+        if (s.getDirection() == Constants.HORIZONTAL && s.getCol() + s.getLength() <= grid[0].length)
         {
             for (int i = s.getCol(); i < s.getCol() + s.getLength(); i++)
             {
@@ -87,7 +87,7 @@ public class Grid {
             }
             return true;
         }
-        else if (s.getDirection() == Constants.VERTICAL && s.getRow() + s.getLength() < grid.length)
+        else if (s.getDirection() == Constants.VERTICAL && s.getRow() + s.getLength() <= grid.length)
         {
             for (int i = s.getRow(); i < s.getRow() + s.getLength(); i++)
             {
