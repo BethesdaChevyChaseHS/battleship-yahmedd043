@@ -2,10 +2,16 @@ package bcc.battleship;
 import bcc.battleship.Constants;
 
 public class Player {
-  
+    private Ship[] playerShips = new Ship[5];
+    private Grid myGrid = new Grid();
+    private Grid opponentGrid = new Grid();
+
     // Constructor: Initialize the grids and the ships.
     public Player() {
-
+        for (int i = 0; i < playerShips.length; i++)
+        {
+            playerShips[i] = new Ship(Constants.SHIP_LENGTHS[i]);
+        }
     }
     
     /**
@@ -15,8 +21,13 @@ public class Player {
      */
     
     public boolean chooseShipLocation(int index, int row, int col, int direction) {
-        
-        return false;
+        if (playerShips[index].isDirectionSet() || playerShips[index].isLocationSet() || myGrid.hasShip(row, col))
+        {
+            return false;
+        }
+        playerShips[index].setLocation(row, col);
+        playerShips[index].setDirection(direction);
+        return myGrid.addShip(playerShips[index]);
     }
    
     /**
@@ -26,15 +37,21 @@ public class Player {
      *
      */
     public boolean recordOpponentGuess(int row, int col) {
+        if (myGrid.hasShip(row, col))
+        {
+            myGrid.markHit(row, col);
+            return true;
+        }
+        myGrid.markMiss(row, col);
         return false;
     }
     
     
     public Grid getMyGrid() {
-        return null;
+        return myGrid;
     }
     
     public Grid getOpponentGrid() {
-        return null;
+        return opponentGrid;
     }
 }
